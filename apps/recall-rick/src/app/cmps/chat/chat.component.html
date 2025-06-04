@@ -1,0 +1,22 @@
+<div class="chat-container">
+  <div class="chat-header">💬 Chat Room with Recall Rick</div>
+
+  <div class="chat-messages" #messagesContainer>
+    <div *ngFor="let msg of messages" class="chat-message" [ngClass]="msg.sender">
+      <span class="sender">{{ msg.sender === 'user' ? 'You' : 'Recall Rick' }}</span>
+      <div class="text">{{ msg.text }}</div>
+      <div class="timestamp">{{ msg.timestamp | date:'shortTime' }}</div>
+    </div>
+  </div>
+
+  <form class="chat-input" (ngSubmit)="sendMessage()" autocomplete="off">
+    <input
+      type="text"
+      [(ngModel)]="inputText"
+      name="chatInput"
+      placeholder="Type your message..."
+      required
+    />
+    <button type="submit" [disabled]="!inputText.trim()">Send</button>
+  </form>
+</div>

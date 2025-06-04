@@ -1,0 +1,43 @@
+.header {
+  background: radial-gradient(circle at center, #00ffa2 0%, #00c9ff 100%);
+  color: #1e1e2f;
+  padding: 1.25rem 2rem;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-bottom: 4px solid #39ff14;
+  box-shadow: 0 0 20px #00ffa2, 0 0 30px #39ff14;
+  top: 0;
+  z-index: 100;
+  transform: skewY(-1deg);
+
+  animation: rickPulse 2s infinite ease-in-out;
+
+  @keyframes rickPulse {
+    0% {
+      text-shadow: 0 0 3px #00ffa2, 0 0 5px #00ffa2;
+      transform: skewY(-1deg) scale(1);
+    }
+    50% {
+      text-shadow: 0 0 10px #39ff14, 0 0 15px #00ffff;
+      transform: skewY(-1deg) scale(1.01);
+    }
+    100% {
+      text-shadow: 0 0 3px #00ffa2, 0 0 5px #00ffa2;
+      transform: skewY(-1deg) scale(1);
+    }
+  }
+}
+
+h1 {
+  display: flex;
+}
+
+img {
+  max-width: 100px;
+  display: flex;
+}
