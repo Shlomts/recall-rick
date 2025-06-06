@@ -1,3 +1,7 @@
+:host {
+  z-index: 10;
+}
+
 .header {
   background: radial-gradient(circle at center, #00ffa2 0%, #00c9ff 100%);
   color: #1e1e2f;
@@ -13,7 +17,6 @@
   border-bottom: 4px solid #39ff14;
   box-shadow: 0 0 20px #00ffa2, 0 0 30px #39ff14;
   top: 0;
-  z-index: 100;
   transform: skewY(-1deg);
 
   animation: rickPulse 2s infinite ease-in-out;

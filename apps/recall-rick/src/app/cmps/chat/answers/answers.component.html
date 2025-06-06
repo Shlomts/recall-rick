@@ -1,0 +1,4 @@
+    <div class="answer" *ngFor="let answer of answers">
+      <span>{{ answer.from === 'user' ? 'You' : 'Bot' }}:</span>
+      <span>{{ answer.question }}</span>
+    </div>

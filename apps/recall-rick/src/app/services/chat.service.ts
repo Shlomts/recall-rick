@@ -79,7 +79,7 @@ export class ChatService {
 		const messages: Message[] = [
 			{
 				_id: "a1B2c3D",
-				sentAt: new Date("2025-5-30T08:13:00"),
+				sentAt: new Date("2025-05-30T08:13:00"),
 				from: "user",
 				question: "What time is the meeting today?",
 			},

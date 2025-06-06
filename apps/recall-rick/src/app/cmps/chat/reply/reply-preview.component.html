@@ -1,0 +1,5 @@
+    <div class="reply-preview">
+      <answers [answers]="message.replies || []"></answers>
+      <input [(ngModel)]="newReply" placeholder="Write a reply..." />
+      <button (click)="submitReply()">Send</button>
+    </div>

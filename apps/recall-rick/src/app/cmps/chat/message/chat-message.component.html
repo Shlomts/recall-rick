@@ -1,0 +1,19 @@
+<div class="chat-message" [ngClass]="msg.from">
+	<span class="sender">{{ msg.from === 'user' ? 'You' : 'Recall Rick' }}</span>
+	<div class="text">{{ msg.question }}</div>
+	<div class="timestamp">{{ msg.sentAt | date: 'shortTime' }}</div>
+
+	<div *ngIf="msg.replies?.length" class="replies-preview">
+		<div class="reply" *ngFor="let reply of msg.replies">
+			<span>{{ reply.from === 'user' ? 'You' : 'Bot' }}:</span>
+			{{ reply.question }}
+		</div>
+	</div>
+
+	<button class="reply-btn" (click)="toggleReplies()">Reply</button>
+
+	<div *ngIf="showReplies" class="reply-box">
+		<input [(ngModel)]="newReplyText" placeholder="Write a reply..." />
+		<button (click)="submitReply()">Send</button>
+	</div>
+</div>
