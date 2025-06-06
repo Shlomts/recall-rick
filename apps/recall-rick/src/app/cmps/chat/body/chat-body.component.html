@@ -1,0 +1,7 @@
+<div class="chat-messages" #messagesContainer>
+  <div *ngFor="let msg of messages" class="chat-message" [ngClass]="msg.from">
+    <span class="sender">{{ msg.from === 'user' ? 'You' : 'Recall Rick' }}</span>
+    <div class="text">{{ msg.question }}</div>
+    <div class="timestamp">{{ msg.sentAt | date: 'shortTime' }}</div>
+  </div>
+</div>

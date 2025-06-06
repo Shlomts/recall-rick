@@ -1,5 +1,7 @@
 export interface Message {
-  sender: 'user' | 'bot';
-  text: string;
-  timestamp: Date;
+	_id: string
+	sentAt: Date
+	from: "user" | "bot"
+	question: string
+	answers?: string[]
 }

@@ -1,0 +1,10 @@
+<form class="chat-input" (ngSubmit)="sendMessageToServer()" autocomplete="off">
+	<input
+		type="text"
+		[(ngModel)]="userInput"
+		name="chatMessageInput"
+		placeholder="Type your message..."
+		required
+	/>
+	<button type="submit" [disabled]="!userInput.trim()">Send</button>
+</form>

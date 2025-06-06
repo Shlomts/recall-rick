@@ -1,110 +1,22 @@
+:host {
+	display: block;
+	bottom: 0;
+	background-color: #1e1e2f;
+	max-width: 80%;
+	position: absolute;
+	margin: auto;
+	right: 0;
+	left: 0;
+	overflow: scroll;
+}
+
 .chat-container {
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 80px); // assuming header ~80px
-  background: #1e1e2f;
-  color: #fff;
-  padding: 1rem;
-  font-family: 'Comic Neue', cursive;
-  box-sizing: border-box;
-}
-
-.chat-header {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  color: #00ffea;
-  text-align: center;
-}
-
-.chat-messages {
-  flex: 1;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding-right: 0.25rem;
-  scrollbar-width: thin;
-  scrollbar-color: #00ffaa transparent;
-}
-
-.chat-message {
-  max-width: 75%;
-  padding: 0.75rem 1rem;
-  border-radius: 20px;
-  position: relative;
-  line-height: 1.4;
-  word-wrap: break-word;
-
-  &.user {
-    background-color: #00ffaa;
-    color: #000;
-    align-self: flex-end;
-    border-bottom-right-radius: 5px;
-  }
-
-  &.bot {
-    background-color: #00d9ff;
-    color: #000;
-    align-self: flex-start;
-    border-bottom-left-radius: 5px;
-
-    &::after {
-      content: '🤖';
-      position: absolute;
-      right: -1.5rem;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-  }
-
-  .sender {
-    font-weight: bold;
-    margin-bottom: 0.25rem;
-    display: block;
-  }
-
-  .timestamp {
-    font-size: 0.7rem;
-    text-align: right;
-    opacity: 0.6;
-    margin-top: 0.25rem;
-  }
-}
-
-.chat-input {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 1rem;
-
-  input[type='text'] {
-    flex: 1;
-    padding: 0.75rem 1rem;
-    border-radius: 30px;
-    border: none;
-    outline: none;
-    font-size: 1rem;
-    background: #2c2c3e;
-    color: #fff;
-  }
-
-  button {
-    padding: 0 1.5rem;
-    border: none;
-    border-radius: 30px;
-    background-color: #39ff14;
-    color: #000;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s ease;
-
-    &:hover {
-      background-color: #5cff40;
-    }
-
-    &:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-  }
+	display: flex;
+	flex-direction: column;
+	height: calc(100vh - 200px);
+	background: #1e1e2f;
+	color: #fff;
+	padding: 1rem;
+	font-family: "Comic Neue", cursive;
+	box-sizing: border-box;
 }
