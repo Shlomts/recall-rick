@@ -10,10 +10,10 @@
 		</div>
 	</div>
 
-	<button class="reply-btn" (click)="toggleReplies()">Reply</button>
-
 	<div *ngIf="showReplies" class="reply-box">
-		<input [(ngModel)]="newReplyText" placeholder="Write a reply..." />
+		<input [(ngModel)]="newReplyText" placeholder="Write a reply..."/>
 		<button (click)="submitReply()">Send</button>
 	</div>
+
+	<button class="reply-btn" (click)="toggleReplies()">Reply</button>
 </div>

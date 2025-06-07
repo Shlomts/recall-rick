@@ -3,6 +3,7 @@
 	border-radius: 12px;
 	padding: 1rem;
 	margin-bottom: 1rem;
+	display: grid;
 	position: relative;
 	max-width: 80%;
 	align-self: flex-start;
@@ -37,6 +38,7 @@
 		cursor: pointer;
 		font-size: 0.85rem;
 		margin-top: 0.5rem;
+		right: 0;
 		transition: color 0.2s;
 
 		&:hover {

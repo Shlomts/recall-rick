@@ -1,5 +1,6 @@
 import { Question } from "../models/message.model"
 import { MessageRepo } from "../db/message.repo"
+import { BotService } from "./bot.service"
 
 export class MessageService {
 	async getAll(): Promise<Question[]> {
@@ -11,6 +12,7 @@ export class MessageService {
 	}
 
 	async create(msg: Question): Promise<Question> {
+		this.getRickplyToKnownQuestion(msg)
 		return MessageRepo.create(msg)
 	}
 
@@ -22,8 +24,19 @@ export class MessageService {
 		return MessageRepo.delete(id)
 	}
 
-	async isReplyToKnownQuestion(newMessage: string): Promise<Question | null> {
-		return null
-		// return MessageRepo.isReplyToKnownQuestion(newMessage)
+	async getRickplyToKnownQuestion(
+		newMessage: Question
+	): Promise<Question | null> {
+		const knownMessages = await MessageRepo.getAll()
+		const knownMessage = knownMessages.find(
+			(msg) =>
+				msg.question.toLocaleLowerCase() ===
+				newMessage.question.toLocaleLowerCase()
+		)
+		if (knownMessage) {
+			newMessage.answers = [ await BotService.generateRickply(newMessage.question)]
+		}
+
+		return newMessage
 	}
 }
