@@ -12,6 +12,9 @@ const SOCKET_URL = environment.production
 	? window.location.origin
 	: "http://localhost:3333"
 
+/**
+ * Service for managing chat messages, including real-time updates and API communication.
+ */
 @Injectable({
 	providedIn: "root",
 })
@@ -22,8 +25,15 @@ export class ChatService {
 	}
 
 	private _messages$ = new BehaviorSubject<Question[]>([])
+	/**
+	 * Observable stream of all chat messages.
+	 */
 	public messages$ = this._messages$.asObservable()
 
+	/**
+	 * Queries all messages from the backend API and updates the observable.
+	 * @returns Observable of Question array.
+	 */
 	public query() {
 		return from(apiService.query<Question>(ENTITY)).pipe(
 			tap((messages) => {
@@ -34,6 +44,11 @@ export class ChatService {
 		)
 	}
 
+	/**
+	 * Saves a message (adds or edits based on presence of _id).
+	 * @param message - The message to save.
+	 * @returns Observable of the saved Question.
+	 */
 	public save(message: Question) {
 		return message._id ? this._edit(message) : this._add(message)
 	}
@@ -61,6 +76,11 @@ export class ChatService {
 		)
 	}
 
+	/**
+	 * Retrieves a message by its ID from the backend API.
+	 * @param messageId - The ID of the message to retrieve.
+	 * @returns Observable of the Question.
+	 */
 	public getById(messageId: string): Observable<Question> {
 		return from(apiService.get<Question>(ENTITY, messageId)).pipe(
 			retry(1),
@@ -68,6 +88,10 @@ export class ChatService {
 		)
 	}
 
+	/**
+	 * Returns an empty message object template.
+	 * @returns Partial<Question> with empty question field.
+	 */
 	public getEmptyMesssage(): Partial<Question> {
 		return { question: "" }
 	}

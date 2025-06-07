@@ -4,6 +4,16 @@ import { Question } from "@recall-rick/common/shared-utils"
 
 const messageService = new MessageService()
 
+/**
+ * Controller to fetch all messages.
+ *
+ * @param req - Express request object
+ * @param res - Express response object
+ * @returns Promise<void>
+ *
+ * @remarks
+ * Responds with a list of all messages or an error message.
+ */
 export async function getAllMessages(
 	req: Request,
 	res: Response
@@ -19,6 +29,16 @@ export async function getAllMessages(
 	}
 }
 
+/**
+ * Controller to fetch a message by its ID.
+ *
+ * @param req - Express request object, expects 'id' param
+ * @param res - Express response object
+ * @returns Promise<void>
+ *
+ * @remarks
+ * Responds with the message if found, or a 404 error if not found.
+ */
 export async function getMessageById(
 	req: Request,
 	res: Response
@@ -39,6 +59,16 @@ export async function getMessageById(
 	}
 }
 
+/**
+ * Controller to create a new message.
+ *
+ * @param req - Express request object, expects a Question in the body
+ * @param res - Express response object
+ * @returns Promise<void>
+ *
+ * @remarks
+ * Validates the message, creates it, emits a socket event, and responds with the created message.
+ */
 export async function createMessage(
 	req: Request,
 	res: Response
@@ -63,6 +93,16 @@ export async function createMessage(
 	}
 }
 
+/**
+ * Controller to update a message's answers.
+ *
+ * @param req - Express request object, expects 'id' param and answers in the body
+ * @param res - Express response object
+ * @returns Promise<void>
+ *
+ * @remarks
+ * Updates the answers of a message, emits a socket event, and responds with the updated message.
+ */
 export async function updateMessage(
 	req: Request,
 	res: Response

@@ -1,9 +1,44 @@
 export const storageService = {
+	/**
+	 * Queries all entities of a given type from localStorage.
+	 * @param entityType - The type of entity to query.
+	 * @param delay - Optional delay in milliseconds before resolving.
+	 * @returns Promise resolving to an array of entities.
+	 */
 	query,
+	/**
+	 * Retrieves a single entity by its ID from localStorage.
+	 * @param entityType - The type of entity.
+	 * @param entityId - The ID of the entity to retrieve.
+	 * @returns Promise resolving to the entity.
+	 */
 	get,
+	/**
+	 * Creates a new entity in localStorage.
+	 * @param entityType - The type of entity.
+	 * @param newEntity - The entity to create.
+	 * @returns Promise resolving to the created entity.
+	 */
 	post,
+	/**
+	 * Updates an existing entity in localStorage.
+	 * @param entityType - The type of entity.
+	 * @param updatedEntity - The entity with updated data.
+	 * @returns Promise resolving to the updated entity.
+	 */
 	put,
+	/**
+	 * Removes an entity by its ID from localStorage.
+	 * @param entityType - The type of entity.
+	 * @param entityId - The ID of the entity to remove.
+	 * @returns Promise resolving to void.
+	 */
 	remove,
+	/**
+	 * Generates a random string ID for new entities.
+	 * @param length - Optional length of the ID (default is 7).
+	 * @returns A random string ID.
+	 */
 	makeId,
 }
 
