@@ -48,12 +48,7 @@ const messageService = {
 	 * @returns Promise resolving to the updated Question.
 	 */
 	getRickplyToKnownQuestion: async (newMessage: Question): Promise<Question> => {
-		const knownMessages = await MessageRepo.getAll()
-		const knownMessage = knownMessages.find(
-			(msg) =>
-				msg.question.toLocaleLowerCase() ===
-					newMessage.question.toLocaleLowerCase() && msg.answers.length > 0
-		)
+		const knownMessage = await MessageRepo.findKnownQuestionWithAnswers(newMessage.question)
 
 		if (knownMessage) {
 			const answers = knownMessage.answers.map((answer) => answer.question)
