@@ -9,6 +9,6 @@ export interface Reply extends Message {
 }
 
 export interface Question extends Message {
-	_id: string
+	_id: string | any
 	answers: Reply[]
 }

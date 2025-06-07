@@ -1,4 +1,4 @@
-import { Question } from "../models/message.model"
+import { Question } from "@recall-rick/common/shared-utils"
 import { MessageRepo } from "../db/message.repo"
 import { BotService } from "./bot.service"
 
@@ -18,10 +18,6 @@ export class MessageService {
 
 	async update(id: string, data: Partial<Question>): Promise<Question | null> {
 		return MessageRepo.update(id, data)
-	}
-
-	async delete(id: string): Promise<void> {
-		return MessageRepo.delete(id)
 	}
 
 	async getRickplyToKnownQuestion(newMessage: Question): Promise<Question> {

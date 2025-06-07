@@ -1,12 +1,15 @@
-import { Question } from "../models/message.model"
+import { Question } from "@recall-rick/common/shared-utils"
 import { Collection, ObjectId } from "mongodb"
 import { getDb } from "./mongo.client"
 
-let collection: Collection<Question>
+interface QuestionDB extends Question {
+	_id: ObjectId
+}
+let collection: Collection<QuestionDB>
 
 export async function initMessageRepo() {
 	const db = await getDb()
-	collection = db.collection<Question>("questions")
+	collection = db.collection<QuestionDB>("questions")
 }
 
 export const MessageRepo = {
@@ -15,7 +18,7 @@ export const MessageRepo = {
 	},
 
 	async getById(id: string): Promise<Question | null> {
-		return await collection.findOne({ _id: id })
+		return await collection.findOne({ _id: new ObjectId(id) })
 	},
 
 	async create(data: Question): Promise<Question> {
@@ -27,9 +30,5 @@ export const MessageRepo = {
 		delete data._id
 		await collection.updateOne({ _id: new ObjectId(id) }, { $set: data })
 		return this.getById(new ObjectId(id))
-	},
-
-	async delete(id: string): Promise<void> {
-		await collection.deleteOne({ _id: id })
 	},
 }

@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { MessageService } from "../services/message.service"
-import { Question } from "../models/message.model"
+import { Question } from "@recall-rick/common/shared-utils"
 
 const messageService = new MessageService()
 
@@ -52,7 +52,6 @@ export async function createMessage(
 		delete msg._id
 		msg.sentAt = new Date(msg.sentAt)
 		const created = await messageService.create(msg)
-		// --- SOCKET.IO BROADCAST ---
 		const io = req.app.get("io")
 		if (io) io.emit("message-added", created)
 		res.status(201).json(created)
@@ -76,7 +75,6 @@ export async function updateMessage(
 			res.status(404).json({ error: "Message not found" })
 			return
 		}
-		// --- SOCKET.IO BROADCAST ---
 		const io = req.app.get("io")
 		if (io) io.emit("message-updated", updated)
 		res.json(updated)
@@ -88,18 +86,4 @@ export async function updateMessage(
 	}
 }
 
-export async function deleteMessage(
-	req: Request,
-	res: Response
-): Promise<void> {
-	try {
-		const id = req.params.id
-		await messageService.delete(id)
-		res.status(204).end()
-	} catch (err) {
-		res.status(500).json({
-			error: "Failed to delete message",
-			details: (err as Error).message,
-		})
-	}
-}
+

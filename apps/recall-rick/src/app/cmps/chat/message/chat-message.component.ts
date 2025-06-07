@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from "@angular/core"
-import { Question, Reply } from "../../../models/message.model"
+import { Question, Reply } from "@recall-rick/common/shared-utils"
 import { v4 } from "uuid"
 @Component({
 	selector: "chat-message",

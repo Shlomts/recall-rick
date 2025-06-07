@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core"
-import { Reply } from "../../../models/message.model";
+import { Reply } from "@recall-rick/common/shared-utils"
 
 @Component({
 	selector: "answers",
@@ -8,5 +8,5 @@ import { Reply } from "../../../models/message.model";
 	styleUrl: "./answers.component.scss",
 })
 export class AnswersComponent {
-  @Input() answers: Reply[] = [];
+	@Input() answers: Reply[] = []
 }

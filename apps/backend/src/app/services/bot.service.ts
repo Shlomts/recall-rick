@@ -1,5 +1,5 @@
 import { v4 } from "uuid"
-import { Reply } from "../models/message.model"
+import { Reply } from "@recall-rick/common/shared-utils"
 import { callAI } from "../utils/ai-client"
 
 export class BotService {

@@ -1,12 +1,11 @@
 import { Component } from "@angular/core"
 import { ChatService } from "../../../services/chat.service"
-import { Question } from "../../../models/message.model"
+import { Question } from "@recall-rick/common/shared-utils"
 @Component({
 	selector: "chat-add",
 	standalone: false,
 	templateUrl: "./chat-add.component.html",
 	styleUrl: "./chat-add.component.scss",
-
 })
 export class ChatAddComponent {
 	userInput: string = ""

@@ -9,7 +9,7 @@ import {
 	ChangeDetectionStrategy,
 } from "@angular/core"
 import { ChatService } from "../../../services/chat.service"
-import { Question, Reply } from "../../../models/message.model"
+import { Question, Reply } from "@recall-rick/common/shared-utils"
 
 @Component({
 	selector: "chat-body",

@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http"
 import { BehaviorSubject, from, Observable, throwError } from "rxjs"
 import { catchError, retry, tap } from "rxjs/operators"
 import { apiService } from "./api.service"
-import { Question, Reply } from "../models/message.model"
+import { Question, Reply } from "@recall-rick/common/shared-utils"
 import io from "socket.io-client"
 import { environment } from "../../environments/environment"
 
