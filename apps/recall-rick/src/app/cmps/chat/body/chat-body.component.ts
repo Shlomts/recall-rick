@@ -21,6 +21,8 @@ import { Question, Reply } from "@recall-rick/common/shared-utils"
 export class ChatBodyComponent implements AfterViewChecked, OnChanges {
 	@Input() messages: Question[] = []
 
+	private previousMessagesLength = 0
+
 	handleReply(event: { original: Question; reply: Reply }) {
 		const updatedMessage: Question = {
 			...event.original,
@@ -35,12 +37,17 @@ export class ChatBodyComponent implements AfterViewChecked, OnChanges {
 	constructor(private chatService: ChatService, private hostElement: ElementRef) {}
 
 	ngAfterViewChecked(): void {
-		this.scrollToBottom()
+		// Remove auto-scroll from here to allow manual scroll
 	}
 
 	ngOnChanges(changes: SimpleChanges): void {
 		if (changes["messages"] && !changes["messages"].firstChange) {
-			this.scrollToBottom()
+			const prev = changes["messages"].previousValue?.length || 0
+			const curr = changes["messages"].currentValue?.length || 0
+			if (curr > prev) {
+				this.scrollToBottom()
+			}
+			this.previousMessagesLength = curr
 		}
 	}
 

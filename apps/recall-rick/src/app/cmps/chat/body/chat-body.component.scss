@@ -1,6 +1,8 @@
 :host {
 	height: calc(100% - 100px);
 	overflow: auto;
+	scrollbar-width: thin;
+	scrollbar-color: #00ffaa transparent;
 }
 
 .chat-messages {
@@ -10,8 +12,6 @@
 	flex-direction: column;
 	gap: 0.5rem;
 	padding-right: 0.25rem;
-	scrollbar-width: thin;
-	scrollbar-color: #00ffaa transparent;
 }
 
 .chat-message {

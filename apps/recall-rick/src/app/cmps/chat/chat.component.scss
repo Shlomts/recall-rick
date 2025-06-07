@@ -7,12 +7,13 @@
 	margin: auto;
 	right: 0;
 	left: 0;
+	z-index: -1;
 }
 
 .chat-container {
 	display: flex;
 	flex-direction: column;
-	height: calc(100vh - 200px);
+	height: calc(100vh - 140px);
 	background: #1e1e2f;
 	color: #fff;
 	padding: 1rem;
