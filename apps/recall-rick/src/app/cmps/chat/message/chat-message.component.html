@@ -1,11 +1,11 @@
 <div class="chat-message" [ngClass]="msg.from">
-	<span class="sender">{{ msg.from === 'user' ? 'You' : 'Recall Rick' }}</span>
+	<span class="sender">{{ msg.from === "user" ? "You" : "Recall Rick" }}</span>
 	<div class="text">{{ msg.question }}</div>
-	<div class="timestamp">{{ msg.sentAt | date: 'shortTime' }}</div>
+	<div class="timestamp">{{ msg.sentAt | date : "shortTime" }}</div>
 
-	<div *ngIf="msg.replies?.length" class="replies-preview">
-		<div class="reply" *ngFor="let reply of msg.replies">
-			<span>{{ reply.from === 'user' ? 'You' : 'Bot' }}:</span>
+	<div *ngIf="msg.answers?.length" class="replies-preview">
+		<div class="reply" *ngFor="let reply of msg.answers">
+			<span>{{ reply.from === "user" ? "You" : "Bot" }}:</span>
 			{{ reply.question }}
 		</div>
 	</div>

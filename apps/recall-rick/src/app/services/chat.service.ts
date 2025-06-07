@@ -32,7 +32,7 @@ export class ChatService {
 	}
 
 	public save(message: Message) {
-		return message._id ? this._addAnswer(message) : this._add(message)
+		return message._id ? this._edit(message) : this._add(message)
 	}
 
 	private _add(message: Message) {
@@ -48,7 +48,7 @@ export class ChatService {
 		)
 	}
 
-	private _addAnswer(message: Message) {
+	private _edit(message: Message) {
 		return from(storageService.put(ENTITY, message)).pipe(
 			tap((updatedMessage) => {
 				const messages = [...this._messages$.value]

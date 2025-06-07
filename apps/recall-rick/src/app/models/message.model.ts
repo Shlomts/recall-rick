@@ -3,5 +3,5 @@ export interface Message {
 	sentAt: Date
 	from: "user" | "bot"
 	question: string
-	replies?: Message[]
+	answers?: Message[]
 }

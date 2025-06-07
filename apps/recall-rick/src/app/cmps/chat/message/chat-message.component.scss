@@ -1,58 +1,116 @@
 .chat-message {
-  max-width: 75%;
-  padding: 0.75rem 1rem;
-  border-radius: 20px;
-  position: relative;
-  line-height: 1.4;
-  word-wrap: break-word;
+	background-color: #2e2f4e;
+	border-radius: 12px;
+	padding: 1rem;
+	margin-bottom: 1rem;
+	position: relative;
+	max-width: 80%;
+	align-self: flex-start;
+	animation: fadeIn 0.3s ease-in-out;
 
-  &.user {
-    background-color: #00ffaa;
-    color: #000;
-    align-self: flex-end;
-    border-bottom-right-radius: 5px;
-  }
+	&.user {
+		background-color: #4e2e4e;
+		align-self: flex-end;
+	}
 
-  &.bot {
-    background-color: #00d9ff;
-    color: #000;
-    align-self: flex-start;
-    border-bottom-left-radius: 5px;
+	.sender {
+		font-weight: bold;
+		color: #00ffe7;
+		display: block;
+		margin-bottom: 0.25rem;
+	}
 
-    &::after {
-      content: "🤖";
-      position: absolute;
-      right: -1.5rem;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-  }
+	.text {
+		font-size: 1rem;
+		margin-bottom: 0.5rem;
+	}
 
-  .sender {
-    font-weight: bold;
-    margin-bottom: 0.25rem;
-    display: block;
-  }
+	.timestamp {
+		font-size: 0.75rem;
+		color: #ccc;
+	}
 
-  .timestamp {
-    font-size: 0.7rem;
-    text-align: right;
-    opacity: 0.6;
-    margin-top: 0.25rem;
-  }
+	.reply-btn {
+		background: none;
+		border: none;
+		color: #00ffe7;
+		cursor: pointer;
+		font-size: 0.85rem;
+		margin-top: 0.5rem;
+		transition: color 0.2s;
 
-  .reply-btn {
-    background: transparent;
-    border: none;
-    color: #fff;
-    font-size: 0.7rem;
-    cursor: pointer;
-    padding: 0.25rem 0;
-    text-decoration: underline;
-    opacity: 0.7;
+		&:hover {
+			color: #1affff;
+		}
+	}
 
-    &:hover {
-      opacity: 1;
-    }
-  }
+	.replies-preview {
+		margin-top: 0.75rem;
+		background: #1e1e2f;
+		padding: 0.5rem;
+		border-radius: 8px;
+		border-left: 3px solid #00ffe7;
+
+		.reply {
+			padding: 0.25rem 0;
+			font-size: 0.85rem;
+			color: #d2f5ff;
+			border-bottom: 1px dashed #444;
+
+			&:last-child {
+				border-bottom: none;
+			}
+
+			span {
+				color: #00ffea;
+				font-weight: 600;
+				margin-right: 0.25rem;
+			}
+		}
+	}
+
+	.reply-box {
+		margin-top: 0.5rem;
+		display: flex;
+		gap: 0.5rem;
+
+		input {
+			flex: 1;
+			padding: 0.5rem;
+			border-radius: 6px;
+			border: none;
+			background: #444;
+			color: white;
+
+			&::placeholder {
+				color: #aaa;
+			}
+		}
+
+		button {
+			padding: 0.5rem 1rem;
+			border: none;
+			border-radius: 6px;
+			background: #00ffea;
+			color: #1e1e2f;
+			font-weight: bold;
+			cursor: pointer;
+			transition: background 0.3s;
+
+			&:hover {
+				background: #1affff;
+			}
+		}
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }

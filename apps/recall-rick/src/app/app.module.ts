@@ -9,7 +9,6 @@ import { ChatComponent } from "./cmps/chat/chat.component"
 import { ChatBodyComponent } from "./cmps/chat/body/chat-body.component"
 import { ChatAddComponent } from "./cmps/chat/add/chat-add.component"
 import { ChatMessageComponent } from "./cmps/chat/message/chat-message.component"
-import { ReplyPreviewComponent } from "./cmps/chat/reply/reply-preview.component"
 import { AnswersComponent } from "./cmps/chat/answers/answers.component"
 
 @NgModule({
@@ -21,7 +20,6 @@ import { AnswersComponent } from "./cmps/chat/answers/answers.component"
 		ChatBodyComponent,
 		ChatAddComponent,
 		ChatMessageComponent,
-		ReplyPreviewComponent,
 		AnswersComponent,
 	],
 	imports: [BrowserModule, CommonModule, FormsModule],
