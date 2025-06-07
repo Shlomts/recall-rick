@@ -4,14 +4,21 @@ import { BehaviorSubject, from, Observable, throwError } from "rxjs"
 import { catchError, retry, tap } from "rxjs/operators"
 import { apiService } from "./api.service"
 import { Question, Reply } from "../models/message.model"
+import io from "socket.io-client"
+import { environment } from "../../environments/environment"
 
 const ENTITY = "messages"
+const SOCKET_URL = environment.production
+	? window.location.origin
+	: "http://localhost:3333"
 
 @Injectable({
 	providedIn: "root",
 })
 export class ChatService {
+	private socket = io(SOCKET_URL)
 	constructor(private http: HttpClient) {
+		this._listenToSocket()
 	}
 
 	private _messages$ = new BehaviorSubject<Question[]>([])
@@ -33,12 +40,6 @@ export class ChatService {
 
 	private _add(message: Question) {
 		return from(apiService.post(ENTITY, message)).pipe(
-			tap((newMessage) => {
-				const messages = [...this._messages$.value]
-				messages.push(newMessage)
-				this._messages$.next(messages)
-				return newMessage
-			}),
 			retry(1),
 			catchError(this._handleError)
 		)
@@ -149,5 +150,18 @@ export class ChatService {
 
 	private _handleError(err: HttpErrorResponse) {
 		return throwError(() => err)
+	}
+
+	private _listenToSocket() {
+		this.socket.on("message-added", (message: Question) => {
+			const messages = [...this._messages$.value, message]
+			this._messages$.next(messages)
+		})
+		this.socket.on("message-updated", (updatedMessage: Question) => {
+			const messages = this._messages$.value.map((msg) =>
+				msg._id === updatedMessage._id ? updatedMessage : msg
+			)
+			this._messages$.next(messages)
+		})
 	}
 }

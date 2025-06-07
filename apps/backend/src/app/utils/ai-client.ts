@@ -20,7 +20,7 @@ export async function callAI(
 					as if you were rick sanchez from rick & morty, please use the answers
 					as if they were the only possible answers and poke the questioner for asking more then once:
 					Q: ${question}
-					${answers.map((answer, index) => `A${index + 1}: ${answer}`).join("\n")}
+					${answers.map((answer, index) => `A: ${answer}`).join("\n")}
 					`,
 				},
 			],

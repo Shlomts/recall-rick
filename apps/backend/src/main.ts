@@ -5,6 +5,7 @@ import { initMessageRepo } from "./app/db/message.repo"
 import messageRoutes from "./app/routes/message.routes"
 import botRoutes from "./app/routes/bot.routes"
 import path from "path"
+import { Server } from "socket.io"
 
 dotenv.config()
 
@@ -28,9 +29,15 @@ async function bootstrap() {
 			res.json({ status: "ok" })
 		})
 
-		app.listen(PORT, () => {
+		const server = app.listen(PORT, () => {
 			console.log(`Server running at http://localhost:${PORT}`)
 		})
+
+		// --- SOCKET.IO SETUP ---
+		const io = new Server(server, {
+			cors: { origin: "*" },
+		})
+		app.set("io", io)
 	} catch (err) {
 		console.error("Failed to start server:", err)
 		process.exit(1)

@@ -4,6 +4,8 @@ import {
 	AfterViewChecked,
 	ViewChild,
 	ElementRef,
+	OnChanges,
+	SimpleChanges,
 } from "@angular/core"
 import { ChatService } from "../../../services/chat.service"
 import { Question, Reply } from "../../../models/message.model"
@@ -14,9 +16,8 @@ import { Question, Reply } from "../../../models/message.model"
 	templateUrl: "./chat-body.component.html",
 	styleUrl: "./chat-body.component.scss",
 })
-export class ChatBodyComponent implements AfterViewChecked {
+export class ChatBodyComponent implements AfterViewChecked, OnChanges {
 	@Input() messages: Question[] = []
-	@ViewChild("messagesContainer") private messagesContainer!: ElementRef
 
 	handleReply(event: { original: Question; reply: Reply }) {
 		const updatedMessage: Question = {
@@ -29,12 +30,25 @@ export class ChatBodyComponent implements AfterViewChecked {
 		})
 	}
 
-	constructor(private chatService: ChatService) {}
+	constructor(private chatService: ChatService, private hostElement: ElementRef) {}
 
 	ngAfterViewChecked(): void {
-		try {
-			this.messagesContainer.nativeElement.scrollTop =
-				this.messagesContainer.nativeElement.scrollHeight
-		} catch {}
+		this.scrollToBottom()
+	}
+
+	ngOnChanges(changes: SimpleChanges): void {
+		if (changes["messages"] && !changes["messages"].firstChange) {
+			this.scrollToBottom()
+		}
+	}
+
+	private scrollToBottom(): void {
+		if (!this.hostElement) return
+		setTimeout(() => {
+			try {
+				this.hostElement.nativeElement.scrollTop =
+					this.hostElement.nativeElement.scrollHeight
+			} catch {}
+		}, 0)
 	}
 }
