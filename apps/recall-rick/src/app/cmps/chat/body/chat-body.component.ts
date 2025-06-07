@@ -6,6 +6,7 @@ import {
 	ElementRef,
 	OnChanges,
 	SimpleChanges,
+	ChangeDetectionStrategy,
 } from "@angular/core"
 import { ChatService } from "../../../services/chat.service"
 import { Question, Reply } from "../../../models/message.model"
@@ -15,6 +16,7 @@ import { Question, Reply } from "../../../models/message.model"
 	standalone: false,
 	templateUrl: "./chat-body.component.html",
 	styleUrl: "./chat-body.component.scss",
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatBodyComponent implements AfterViewChecked, OnChanges {
 	@Input() messages: Question[] = []

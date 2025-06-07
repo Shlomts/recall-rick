@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core"
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from "@angular/core"
 import { Question, Reply } from "../../../models/message.model"
 import { v4 } from "uuid"
 @Component({
@@ -6,6 +6,7 @@ import { v4 } from "uuid"
 	templateUrl: "./chat-message.component.html",
 	styleUrls: ["./chat-message.component.scss"],
 	standalone: false,
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatMessageComponent {
 	@Input() from!: "user" | "bot"
