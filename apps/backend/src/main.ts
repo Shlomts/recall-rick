@@ -1,21 +1,37 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
+import express from "express"
+import cors from "cors"
+import dotenv from "dotenv"
+import { initMessageRepo } from "./app/db/message.repo"
+import messageRoutes from "./app/routes/message.routes"
+import botRoutes from "./app/routes/bot.routes"
 
-import express from 'express';
-import * as path from 'path';
+dotenv.config()
 
-const app = express();
+const PORT = process.env.PORT || 3333
 
-app.use('/assets', express.static(path.join(__dirname, 'assets')));
+async function bootstrap() {
+	try {
+		await initMessageRepo()
 
-app.get('/api', (req, res) => {
-  res.send({ message: 'Welcome to backend!' });
-});
+		const app = express()
 
-const port = process.env.PORT || 3333;
-const server = app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}/api`);
-});
-server.on('error', console.error);
+		app.use(cors())
+		app.use(express.json())
+
+		app.use("/api/messages", messageRoutes)
+		app.use("/api/bot", botRoutes)
+
+		app.get("/api/health", (_, res) => {
+			res.json({ status: "ok" })
+		})
+
+		app.listen(PORT, () => {
+			console.log(`Server running at http://localhost:${PORT}`)
+		})
+	} catch (err) {
+		console.error("Failed to start server:", err)
+		process.exit(1)
+	}
+}
+
+bootstrap()
