@@ -4,6 +4,7 @@ import dotenv from "dotenv"
 import { initMessageRepo } from "./app/db/message.repo"
 import messageRoutes from "./app/routes/message.routes"
 import botRoutes from "./app/routes/bot.routes"
+import path from "path"
 
 dotenv.config()
 
@@ -14,6 +15,8 @@ async function bootstrap() {
 		await initMessageRepo()
 
 		const app = express()
+
+		app.use("/", express.static(path.join(__dirname, "assets")))
 
 		app.use(cors())
 		app.use(express.json())

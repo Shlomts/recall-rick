@@ -2,6 +2,7 @@ const { NxAppWebpackPlugin } = require('@nx/webpack/app-plugin');
 const { join } = require('path');
 
 module.exports = {
+  mode: process.env.NODE_ENV || 'production',
   output: {
     path: join(__dirname, '../../dist/apps/backend'),
   },
@@ -9,9 +10,9 @@ module.exports = {
     new NxAppWebpackPlugin({
       target: 'node',
       compiler: 'tsc',
-      main: './src/main.ts',
-      tsConfig: './tsconfig.app.json',
-      assets: ['./src/assets'],
+      main: 'apps/backend/src/main.ts',
+      tsConfig: 'apps/backend/tsconfig.app.json',
+      assets: ['apps/backend/src/assets'],
       optimization: false,
       outputHashing: 'none',
       generatePackageJson: true,

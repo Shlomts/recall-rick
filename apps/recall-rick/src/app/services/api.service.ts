@@ -1,4 +1,8 @@
-const BASE_URL = "http://localhost:3333/api/messages"
+import { environment } from '../../environments/environment'
+
+const BASE_URL = environment.production
+	? "/api/messages"
+	: "http://localhost:3333/api/messages"
 
 export const apiService = {
 	query,
