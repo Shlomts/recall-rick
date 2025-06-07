@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from "@angular/core"
-import { Message } from "../../models/message.model"
+import { Question } from "../../models/message.model"
 import { ChatService } from "../../services/chat.service"
 import { Subscription } from "rxjs"
 
@@ -10,7 +10,7 @@ import { Subscription } from "rxjs"
 	standalone: false,
 })
 export class ChatComponent implements OnInit, OnDestroy {
-	messages: Message[] = []
+	messages: Question[] = []
 	private messagesSubscription: Subscription | undefined
 	private querySubscription: Subscription | undefined
 

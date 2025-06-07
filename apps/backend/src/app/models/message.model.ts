@@ -1,3 +1,5 @@
+import { ObjectId } from "mongodb"
+
 export interface Message {
 	sentAt: Date
 	from: "user" | "bot"
@@ -9,7 +11,7 @@ export interface Reply extends Message{
 }
 
 export interface Question extends Message {
-	_id: string
+	_id: string | ObjectId
 	answers: Reply[]
 }
 

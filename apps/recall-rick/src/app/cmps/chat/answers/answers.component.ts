@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core"
-import { Message } from "../../../models/message.model";
+import { Reply } from "../../../models/message.model";
 
 @Component({
 	selector: "answers",
@@ -8,5 +8,5 @@ import { Message } from "../../../models/message.model";
 	styleUrl: "./answers.component.scss",
 })
 export class AnswersComponent {
-  @Input() answers: Message[] = [];
+  @Input() answers: Reply[] = [];
 }

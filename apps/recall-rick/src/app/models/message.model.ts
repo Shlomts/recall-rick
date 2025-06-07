@@ -1,7 +1,14 @@
 export interface Message {
-	_id: string
 	sentAt: Date
 	from: "user" | "bot"
 	question: string
-	answers?: Message[]
+}
+
+export interface Reply extends Message {
+	id: string
+}
+
+export interface Question extends Message {
+	_id: string
+	answers: Reply[]
 }

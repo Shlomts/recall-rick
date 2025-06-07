@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core"
-import { Message } from "../../../models/message.model"
-
+import { Question, Reply } from "../../../models/message.model"
+import { v4 } from "uuid"
 @Component({
 	selector: "chat-message",
 	templateUrl: "./chat-message.component.html",
@@ -9,8 +9,8 @@ import { Message } from "../../../models/message.model"
 })
 export class ChatMessageComponent {
 	@Input() from!: "user" | "bot"
-	@Input() msg!: Message
-	@Output() reply = new EventEmitter<{ original: Message; reply: Message }>()
+	@Input() msg!: Question
+	@Output() reply = new EventEmitter<{ original: Question; reply: Reply }>()
 
 	showReplies = false
 	newReplyText = ""
@@ -22,8 +22,8 @@ export class ChatMessageComponent {
 	submitReply() {
 		if (!this.newReplyText.trim()) return
 
-		const newReply: Message = {
-			_id: Math.random().toString(36).substring(2, 9),
+		const newReply: Reply = {
+			id: v4(),
 			sentAt: new Date(),
 			from: "user",
 			question: this.newReplyText,

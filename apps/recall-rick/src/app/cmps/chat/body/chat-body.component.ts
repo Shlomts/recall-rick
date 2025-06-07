@@ -6,22 +6,20 @@ import {
 	ElementRef,
 } from "@angular/core"
 import { ChatService } from "../../../services/chat.service"
-import { Message } from "../../../models/message.model"
+import { Question, Reply } from "../../../models/message.model"
 
 @Component({
 	selector: "chat-body",
 	standalone: false,
 	templateUrl: "./chat-body.component.html",
-
-
 	styleUrl: "./chat-body.component.scss",
 })
 export class ChatBodyComponent implements AfterViewChecked {
-	@Input() messages: Message[] = []
+	@Input() messages: Question[] = []
 	@ViewChild("messagesContainer") private messagesContainer!: ElementRef
 
-	handleReply(event: { original: Message; reply: Message }) {
-		const updatedMessage = {
+	handleReply(event: { original: Question; reply: Reply }) {
+		const updatedMessage: Question = {
 			...event.original,
 			answers: [...(event.original.answers || []), event.reply],
 		}

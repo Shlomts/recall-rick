@@ -24,8 +24,9 @@ export const MessageRepo = {
 	},
 
 	async update(id: string, data: Partial<Question>): Promise<Question | null> {
-		await collection.updateOne({ _id: id }, { $set: data })
-		return this.findById(id)
+		delete data._id
+		await collection.updateOne({ _id: new ObjectId(id) }, { $set: data })
+		return this.getById(new ObjectId(id))
 	},
 
 	async delete(id: string): Promise<void> {
