@@ -5,7 +5,7 @@ import { callAI } from "../utils/ai-client"
 /**
  * Service for generating bot replies using AI.
  */
-export class BotService {
+export default {
 	/**
 	 * Generates a Rick-style reply using AI based on the input and optional answers.
 	 *
@@ -13,7 +13,7 @@ export class BotService {
 	 * @param answers - Optional array of previous answers for context.
 	 * @returns Promise resolving to a Reply object.
 	 */
-	static async generateRickply(input: string, answers: string[] = []): Promise<Reply> {
+	generateRickply: async (input: string, answers: string[] = []): Promise<Reply> => {
 		return {
 			id: v4(),
 			sentAt: new Date(),

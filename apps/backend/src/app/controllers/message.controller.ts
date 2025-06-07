@@ -1,8 +1,7 @@
 import { Request, Response } from "express"
-import { MessageService } from "../services/message.service"
+import messageService from "../services/message.service"
 import { Question } from "@recall-rick/common/shared-utils"
 
-const messageService = new MessageService()
 
 /**
  * Controller to fetch all messages.

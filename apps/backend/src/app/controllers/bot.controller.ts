@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { BotService } from '../services/bot.service';
+import BotService from '../services/bot.service';
 
 /**
  * Controller to handle bot reply generation requests.
