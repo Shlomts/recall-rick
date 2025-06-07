@@ -12,8 +12,8 @@ export class MessageService {
 	}
 
 	async create(msg: Question): Promise<Question> {
-		this.getRickplyToKnownQuestion(msg)
-		return MessageRepo.create(msg)
+		msg = await this.getRickplyToKnownQuestion(msg)
+		return await MessageRepo.create(msg)
 	}
 
 	async update(id: string, data: Partial<Question>): Promise<Question | null> {
@@ -24,17 +24,19 @@ export class MessageService {
 		return MessageRepo.delete(id)
 	}
 
-	async getRickplyToKnownQuestion(
-		newMessage: Question
-	): Promise<Question | null> {
+	async getRickplyToKnownQuestion(newMessage: Question): Promise<Question> {
 		const knownMessages = await MessageRepo.getAll()
 		const knownMessage = knownMessages.find(
 			(msg) =>
 				msg.question.toLocaleLowerCase() ===
-				newMessage.question.toLocaleLowerCase()
+					newMessage.question.toLocaleLowerCase() && msg.answers.length > 0
 		)
+
 		if (knownMessage) {
-			newMessage.answers = [ await BotService.generateRickply(newMessage.question)]
+			const answers = knownMessage.answers.map((answer) => answer.question)
+			newMessage.answers = [
+				await BotService.generateRickply(newMessage.question, answers),
+			]
 		}
 
 		return newMessage

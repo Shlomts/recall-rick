@@ -68,7 +68,7 @@ export async function updateMessage(
 	try {
 		const id = req.params.id
 		const data = req.body
-		const updated = await messageService.update(id, data)
+		const updated = await messageService.update(id, {answers: data.answers})
 		if (!updated) {
 			res.status(404).json({ error: "Message not found" })
 			return
