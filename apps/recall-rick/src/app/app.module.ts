@@ -10,6 +10,7 @@ import { ChatBodyComponent } from "./cmps/chat/body/chat-body.component"
 import { ChatAddComponent } from "./cmps/chat/add/chat-add.component"
 import { ChatMessageComponent } from "./cmps/chat/message/chat-message.component"
 import { AnswersComponent } from "./cmps/chat/answers/answers.component"
+import { UserModalComponent } from "./cmps/user-modal/user-modal.component"
 
 @NgModule({
 	declarations: [
@@ -21,6 +22,7 @@ import { AnswersComponent } from "./cmps/chat/answers/answers.component"
 		ChatAddComponent,
 		ChatMessageComponent,
 		AnswersComponent,
+		UserModalComponent,
 	],
 	imports: [BrowserModule, CommonModule, FormsModule],
 	providers: [provideHttpClient()],

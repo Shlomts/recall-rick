@@ -1,6 +1,8 @@
 import { Component } from "@angular/core"
 import { ChatService } from "../../../services/chat.service"
 import { Question } from "@recall-rick/common/shared-utils"
+import { UserService } from '../../../services/user.service';
+
 @Component({
 	selector: "chat-add",
 	standalone: false,
@@ -10,7 +12,7 @@ import { Question } from "@recall-rick/common/shared-utils"
 export class ChatAddComponent {
 	userInput: string = ""
 
-	constructor(private chatService: ChatService) {}
+	constructor(private chatService: ChatService, private userService: UserService) {}
 
 	sendMessageToServer(): void {
 		const text = this.userInput.trim()
@@ -18,14 +20,14 @@ export class ChatAddComponent {
 
 		const message: Partial<Question> = {
 			sentAt: new Date(),
-			from: "user",
+			from: this.userService.username || 'user', 
 			question: text,
 			answers: [],
 		}
 
 		this.chatService.save(message as Question).subscribe({
 			next: () => {
-				this.userInput = "" // Clear input on successful send
+				this.userInput = "" 
 			},
 			error: (err) => console.error("Error sending message:", err),
 		})

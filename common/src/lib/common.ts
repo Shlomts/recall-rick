@@ -1,6 +1,6 @@
 export interface Message {
 	sentAt: Date
-	from: "user" | "bot"
+	from: string
 	question: string
 }
 

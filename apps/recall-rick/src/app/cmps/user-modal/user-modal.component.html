@@ -1,0 +1,8 @@
+<div class="modal-backdrop">
+  <div class="modal-content">
+    <h2>Welcome!</h2>
+    <p>Please enter your name to continue:</p>
+    <input [(ngModel)]="username" placeholder="Your name..." (keyup.enter)="submit()" />
+    <button (click)="submit()" [disabled]="!username.trim()">Continue</button>
+  </div>
+</div>

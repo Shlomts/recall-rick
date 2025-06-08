@@ -1,3 +1,4 @@
+<user-modal *ngIf="!userService.username" (usernameSet)="onUsernameSet($event)"></user-modal>
 <section class="main">
   <app-header></app-header>
   <chat></chat>

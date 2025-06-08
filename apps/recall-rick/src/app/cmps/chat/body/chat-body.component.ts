@@ -1,8 +1,6 @@
 import {
 	Component,
 	Input,
-	AfterViewChecked,
-	ViewChild,
 	ElementRef,
 	OnChanges,
 	SimpleChanges,
@@ -18,7 +16,7 @@ import { Question, Reply } from "@recall-rick/common/shared-utils"
 	styleUrl: "./chat-body.component.scss",
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChatBodyComponent implements AfterViewChecked, OnChanges {
+export class ChatBodyComponent implements OnChanges {
 	@Input() messages: Question[] = []
 
 	private previousMessagesLength = 0
@@ -35,10 +33,6 @@ export class ChatBodyComponent implements AfterViewChecked, OnChanges {
 	}
 
 	constructor(private chatService: ChatService, private hostElement: ElementRef) {}
-
-	ngAfterViewChecked(): void {
-		// Remove auto-scroll from here to allow manual scroll
-	}
 
 	ngOnChanges(changes: SimpleChanges): void {
 		if (changes["messages"] && !changes["messages"].firstChange) {
