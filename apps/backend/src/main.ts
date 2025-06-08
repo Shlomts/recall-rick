@@ -32,8 +32,6 @@ async function bootstrap() {
 		const server = app.listen(PORT, () => {
 			console.log(`Server running at http://localhost:${PORT}`)
 		})
-
-		// --- SOCKET.IO SETUP ---
 		const io = new Server(server, {
 			cors: { origin: "*" },
 		})

@@ -2,6 +2,9 @@
 
 RecallRick is a fullstack chat and knowledge recall platform designed to facilitate interactive conversations, question answering, and information retrieval. The project features a Node.js/Express backend for chat and bot logic, and an Angular frontend for a modern, responsive user experience. Built as an Nx monorepo, it enables efficient development, code sharing, and scalable deployment for both backend and frontend services.
 
+RecallRick AI will answer with a Rick Sanchez (Rick & Morty) tipical reply only if you ask the exact question twice.  
+
+
 ---
 
 ## Project Structure
@@ -50,6 +53,25 @@ npx nx serve recall-rick
   - `app.module.ts`: Main Angular module
 
 The app will be available at [http://localhost:4200](http://localhost:4200) by default.
+
+---
+
+## Backend Environment Variables (.env)
+
+Create a `.env` file in `apps/backend/` with the following variables:
+
+```
+# MongoDB connection string (used in mongo.client.ts)
+MONGO_URI=mongodb://localhost:27017
+
+# Port for backend server (used in main.ts)
+PORT=3333
+
+# Gemini AI API key (used in ai-client.ts)
+GEMINI_API_KEY=your-gemini-api-key-here
+```
+
+Adjust values as needed for your environment.
 
 ---
 
