@@ -1,0 +1,5 @@
+<div class="error-modal" *ngIf="visible">
+  <h2>Error</h2>
+  <p>{{ errorMessage }}</p>
+  <button class="close-btn" (click)="close()" aria-label="Close">✕</button>
+</div>

@@ -11,6 +11,7 @@ import { ChatAddComponent } from "./cmps/chat/add/chat-add.component"
 import { ChatMessageComponent } from "./cmps/chat/message/chat-message.component"
 import { AnswersComponent } from "./cmps/chat/answers/answers.component"
 import { UserModalComponent } from "./cmps/user-modal/user-modal.component"
+import { ErrorModalComponent } from './cmps/error-modal/error-modal.component';
 
 @NgModule({
 	declarations: [
@@ -23,6 +24,7 @@ import { UserModalComponent } from "./cmps/user-modal/user-modal.component"
 		ChatMessageComponent,
 		AnswersComponent,
 		UserModalComponent,
+		ErrorModalComponent,
 	],
 	imports: [BrowserModule, CommonModule, FormsModule],
 	providers: [provideHttpClient()],

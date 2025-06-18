@@ -20,7 +20,11 @@ export default {
 			answer = createAnswer(cachedAnswers[0])
 		} else {
 			answer = await AIService.callAI(input)
-			CacheService.addOrUpdateCache(input, [answer])
+			if (!answer) {
+				answer = `Wubba lubba dub dub! Something went wrong. Try again later.`
+			} else {
+				CacheService.addOrUpdateCache(input, [answer])
+			}
 		}
 		return {
 			id: v4(),

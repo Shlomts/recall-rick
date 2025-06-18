@@ -80,10 +80,10 @@ export async function createMessage(
 		}
 		delete msg._id
 		msg.sentAt = new Date(msg.sentAt)
-		const created = await messageService.create(msg)
+		const createdMsg = await messageService.create(msg)
 		const io = req.app.get("io")
-		if (io) io.emit("message-added", created)
-		res.status(201).json(created)
+		if (io) io.emit("message-added", createdMsg)
+		res.status(201).json(createdMsg)
 	} catch (err) {
 		res.status(500).json({
 			error: "Failed to create message",

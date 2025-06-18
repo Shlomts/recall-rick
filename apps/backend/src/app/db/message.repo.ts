@@ -12,7 +12,13 @@ export async function initMessageRepo() {
 	const db = await getDb()
 	collection = db.collection<QuestionDB>("questions")
 	const last10 = await collection
-		.find({ answers: { $exists: true, $ne: [] } })
+		.find({
+			answers: { $exists: true, $ne: [] },
+			"answers.0.question": {
+				$ne: "Wubba lubba dub dub! Something went wrong. Try again later.",
+				$not: /^AGAIN\?\?/,
+			},
+		})
 		.sort({ _id: -1 })
 		.limit(10)
 		.toArray()

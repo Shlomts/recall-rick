@@ -1,0 +1,52 @@
+.error-modal-backdrop {
+  display: none;
+}
+.error-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  min-width: 260px;
+  max-width: 400px;
+  background: #1e1e2f;
+  color: #39ff14;
+  border-radius: 16px;
+  box-shadow: 0 0 30px #00ffa2, 0 0 10px #39ff14;
+  padding: 2rem 2.5rem 2rem 2.5rem;
+  z-index: 2000;
+  text-align: center;
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: none;
+}
+.error-modal h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.3rem;
+  color: #00ffa2;
+  font-weight: 700;
+  flex: none;
+}
+.error-modal p {
+  margin: 0 0 1rem 0;
+  color: #39ff14;
+  font-size: 1.1rem;
+}
+.error-modal .close-btn {
+  background: none;
+  border: 2px solid #39ff14;
+  color: #39ff14;
+  font-size: 1.3rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  padding: 0.2rem 0.8rem;
+  border-radius: 50%;
+  transition: background 0.2s, color 0.2s;
+}
+.error-modal .close-btn:hover {
+  background: #39ff14;
+  color: #1e1e2f;
+}

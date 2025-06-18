@@ -1,4 +1,5 @@
-<form class="chat-input" (ngSubmit)="sendMessageToServer()" autocomplete="off">
+<error-modal *ngIf="showErrorModal" [errorMessage]="errorMessage" (closed)="onCloseErrorModal()"></error-modal>
+<form class="chat-input" (ngSubmit)="saveMessage()" autocomplete="off">
 	<input
 		type="text"
 		[(ngModel)]="userInput"

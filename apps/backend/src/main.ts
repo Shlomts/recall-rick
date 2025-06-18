@@ -3,7 +3,6 @@ import cors from "cors"
 import dotenv from "dotenv"
 import { initMessageRepo } from "./app/db/message.repo"
 import messageRoutes from "./app/routes/message.routes"
-import botRoutes from "./app/routes/bot.routes"
 import path from "path"
 import { Server } from "socket.io"
 
@@ -23,7 +22,6 @@ async function bootstrap() {
 		app.use(express.json())
 
 		app.use("/api/messages", messageRoutes)
-		app.use("/api/bot", botRoutes)
 
 		app.get("/api/health", (_, res) => {
 			res.json({ status: "ok" })
