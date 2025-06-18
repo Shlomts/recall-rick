@@ -22,6 +22,6 @@ export async function getBotReply(req: Request, res: Response): Promise<void> {
     const reply = await BotService.generateRickply(question);
     res.json(reply);
   } catch (err) {
-    res.status(500).json({ error: 'Failed to generate bot reply', details: (err as Error).message });
+    res.status(500).json({ error: 'Failed to generate reply', details: (err as Error).message });
   }
 }

@@ -1,6 +1,7 @@
 import { Question } from "@recall-rick/common/shared-utils"
 import { MessageRepo } from "../db/message.repo"
 import BotService from "./bot.service"
+import CacheService from "./cache.service"
 
 /**
  * Service for managing messages, including CRUD operations and bot replies.
@@ -18,7 +19,7 @@ const messageService = {
 	 * @param id - The ID of the message to retrieve.
 	 * @returns Promise resolving to a Question or null if not found.
 	 */
-	getById: async(id: string): Promise<Question | null> => {
+	getById: async (id: string): Promise<Question | null> => {
 		return MessageRepo.getById(id)
 	},
 
@@ -28,7 +29,7 @@ const messageService = {
 	 * @returns Promise resolving to the created Question.
 	 */
 	create: async (msg: Question): Promise<Question> => {
-		msg = await messageService.getRickplyToKnownQuestion(msg)
+		msg.answers = [await BotService.generateRickply(msg.question)]
 		return await MessageRepo.create(msg)
 	},
 
@@ -38,26 +39,12 @@ const messageService = {
 	 * @param data - Partial Question data to update.
 	 * @returns Promise resolving to the updated Question or null if not found.
 	 */
-	update: async (id: string, data: Partial<Question>): Promise<Question | null> => {
+	update: async (
+		id: string,
+		data: Partial<Question>
+	): Promise<Question | null> => {
 		return MessageRepo.update(id, data)
-	},
-
-	/**
-	 * Checks if the question is already known and generates a Rick-style reply if so.
-	 * @param newMessage - The new message to check and possibly update with a bot reply.
-	 * @returns Promise resolving to the updated Question.
-	 */
-	getRickplyToKnownQuestion: async (newMessage: Question): Promise<Question> => {
-		const knownMessage = await MessageRepo.findKnownQuestionWithAnswers(newMessage.question)
-
-		if (knownMessage) {
-			const answers = knownMessage.answers.map((answer) => answer.question)
-			newMessage.answers = [
-				await BotService.generateRickply(newMessage.question, answers),
-			]
-		}
-
-		return newMessage
 	}
 }
+
 export default messageService

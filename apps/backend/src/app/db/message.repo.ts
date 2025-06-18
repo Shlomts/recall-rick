@@ -31,16 +31,4 @@ export const MessageRepo = {
 		await collection.updateOne({ _id: new ObjectId(id) }, { $set: data })
 		return this.getById(new ObjectId(id))
 	},
-
-	/**
-	 * Finds a known question (case-insensitive) with at least one answer.
-	 * @param question - The question string to search for.
-	 * @returns Promise resolving to the known Question or null if not found.
-	 */
-	async findKnownQuestionWithAnswers(question: string): Promise<Question | null> {
-		return await collection.findOne({
-			question: { $regex: `^${question}$`, $options: "i" },
-			answers: { $exists: true, $not: { $size: 0 } }
-		})
-	},
 }

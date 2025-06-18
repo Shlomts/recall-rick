@@ -67,7 +67,7 @@ MONGO_URI=mongodb://localhost:27017
 # Port for backend server (used in main.ts)
 PORT=3333
 
-# Gemini AI API key (used in ai-client.ts)
+# Gemini AI API key (used in ai-client.service.ts)
 GEMINI_API_KEY=your-gemini-api-key-here
 ```
 
