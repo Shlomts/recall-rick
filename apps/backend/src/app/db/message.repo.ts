@@ -1,6 +1,7 @@
 import { Question } from "@recall-rick/common/shared-utils"
 import { Collection, ObjectId } from "mongodb"
 import { getDb } from "./mongo.client"
+import CacheService from "../services/cache.service"
 
 interface QuestionDB extends Question {
 	_id: ObjectId
@@ -10,6 +11,12 @@ let collection: Collection<QuestionDB>
 export async function initMessageRepo() {
 	const db = await getDb()
 	collection = db.collection<QuestionDB>("questions")
+	const last10 = await collection
+		.find({ answers: { $exists: true, $ne: [] } })
+		.sort({ _id: -1 })
+		.limit(10)
+		.toArray()
+	await CacheService.hydrateCache(last10.reverse())
 }
 
 export const MessageRepo = {

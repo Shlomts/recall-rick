@@ -1,7 +1,6 @@
 import { Question } from "@recall-rick/common/shared-utils"
 import { MessageRepo } from "../db/message.repo"
 import BotService from "./bot.service"
-import CacheService from "./cache.service"
 
 /**
  * Service for managing messages, including CRUD operations and bot replies.
@@ -24,7 +23,9 @@ const messageService = {
 	},
 
 	/**
-	 * Creates a new message, possibly generating a bot reply if the question is known.
+	 * Creates a new message. If the question was already asked in the last 10 messages,
+	 * replies with the same answer as before, prefixed with a Rick-style intro.
+	 * Otherwise, generates a new Rick-alike answer.
 	 * @param msg - The message to create.
 	 * @returns Promise resolving to the created Question.
 	 */
