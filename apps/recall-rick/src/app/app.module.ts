@@ -12,6 +12,7 @@ import { ChatMessageComponent } from "./cmps/chat/message/chat-message.component
 import { AnswersComponent } from "./cmps/chat/answers/answers.component"
 import { UserModalComponent } from "./cmps/user-modal/user-modal.component"
 import { ErrorModalComponent } from './cmps/error-modal/error-modal.component';
+import { PersonalizedDatePipe } from './pipes/personalized-date.pipe';
 
 @NgModule({
 	declarations: [
@@ -25,6 +26,7 @@ import { ErrorModalComponent } from './cmps/error-modal/error-modal.component';
 		AnswersComponent,
 		UserModalComponent,
 		ErrorModalComponent,
+		PersonalizedDatePipe,
 	],
 	imports: [BrowserModule, CommonModule, FormsModule],
 	providers: [provideHttpClient()],

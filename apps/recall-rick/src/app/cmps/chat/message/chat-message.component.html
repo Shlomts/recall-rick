@@ -3,7 +3,7 @@
 		{{ msg.from === userService.username ? 'You' : (msg.from === 'bot' ? 'Recall Rick' : msg.from) }}
 	</span>
 	<div class="text">{{ msg.question }}</div>
-	<div class="timestamp">{{ msg.sentAt | date : "shortTime" }}</div>
+	<div class="timestamp">{{ msg.sentAt | personalizedDate }}</div>
 
 	<div *ngIf="msg.answers?.length" class="replies-preview">
 		<div class="reply" *ngFor="let reply of msg.answers">
